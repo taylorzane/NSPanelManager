@@ -52,8 +52,8 @@ void MqttManagerConfig::load() {
     char *mqtt_port = std::getenv("MQTT_PORT");
     char *mqtt_username = std::getenv("MQTT_USERNAME");
     char *mqtt_password = std::getenv("MQTT_PASSWORD");
-    char *manager_address = std::getenv("MANAGER_ADDRESS");
-    char *manager_port = std::getenv("MANAGER_PORT");
+    std::string manager_address = std::getenv("MANAGER_ADDRESS");
+    std::string manager_port = std::getenv("MANAGER_PORT");
 
     // Load Home Assistant values
     if (ha_address != nullptr) {
@@ -107,7 +107,7 @@ void MqttManagerConfig::load() {
 
     SPDLOG_INFO("Gathering config from web manager.");
     while (true) {
-      std::string url = "http://" manager_address ":" manager_port "/api/get_mqtt_manager_config";
+      std::string url = "http://" + manager_address + ":" + manager_port + "/api/get_mqtt_manager_config";
       std::string response_data;
       if (WebHelper::perform_request(&url, &response_data, nullptr, nullptr)) {
         SPDLOG_DEBUG("Got config data. Processing config.");
