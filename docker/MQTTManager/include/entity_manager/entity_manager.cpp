@@ -673,7 +673,9 @@ bool EntityManager::websocket_callback(std::string &message, std::string *respon
     NSPanel *panel = EntityManager::get_nspanel_by_mac(mac);
     if (panel != nullptr) {
       SPDLOG_INFO("Received command to delete NSPanel {}::{}.", panel->get_id(), panel->get_name());
-      std::string url = fmt::format("http://" MANAGER_ADDRESS ":" MANAGER_PORT "/api/delete_nspanel/{}", panel->get_id()).c_str();
+      std::string manager_address = std::getenv("MANAGER_ADDRESS");
+      std::string manager_port = std::getenv("MANAGER_PORT");
+      std::string url = fmt::format("http://" + manager_address + ":" + manager_port + "/api/delete_nspanel/{}", panel->get_id()).c_str();
       std::string response_data;
       if (WebHelper::perform_request(&url, &response_data, nullptr, nullptr) && !response_data.empty()) {
 

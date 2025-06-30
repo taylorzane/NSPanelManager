@@ -564,7 +564,9 @@ void NSPanel::update_warnings_from_manager() {
   if (!this->_has_registered_to_manager) {
     return;
   }
-  std::string url = "http://" MANAGER_ADDRESS ":" MANAGER_PORT "/api/get_nspanels_warnings";
+  std::string manager_address = std::getenv("MANAGER_ADDRESS");
+  std::string manager_port = std::getenv("MANAGER_PORT");
+  std::string url = "http://" + manager_address + ":" + manager_port + "/api/get_nspanels_warnings";
   std::string response_data;
   if (WebHelper::perform_request(&url, &response_data, nullptr, nullptr)) {
     nlohmann::json data = nlohmann::json::parse(response_data);
