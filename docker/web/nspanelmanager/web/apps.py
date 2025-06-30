@@ -35,6 +35,10 @@ def start_mqtt_manager():
         "openhab_token", "")
     mqttmanager_env["OPENHAB_TOKEN"] = get_setting_with_default(
         "openhab_token", "")
+    mqttmanager_env["MANAGER_ADDRESS"] = get_setting_with_default(
+        "manager_address", "127.0.0.1")
+    mqttmanager_env["MANAGER_PORT"] = get_setting_with_default(
+        "manager_port", "8000")
     mqttmanager_env["LOG_LEVEL"] = get_setting_with_default(
         "mqttmanager_log_level", "debug")
     subprocess.Popen(["/MQTTManager/build/nspm_mqttmanager"],

@@ -8,8 +8,8 @@
 #include <string>
 #include <vector>
 
-#define MANAGER_ADDRESS "127.0.0.1"
-#define MANAGER_PORT "8000"
+// #define MANAGER_ADDRESS "127.0.0.1"
+// #define MANAGER_PORT "8000"
 
 enum LIGHT_TURN_ON_BEHAVIOR {
   RESTORE,
